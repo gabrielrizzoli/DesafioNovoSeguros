@@ -19,10 +19,17 @@ function lerNotaAluno(nome, numeroNota) {
     while (true) {
         let notaStr = readline.question(`Digite a nota ${numeroNota} do aluno ${nome}: `).replace(",", ".");
         let nota = Number(notaStr);
-        if (!isNaN(nota) && notaStr.trim() !== "" && nota >= 0 && nota <= 10) {
+        // Verifica se é inteiro, não NaN, não vazio, e entre 0 e 10
+        if (
+            !isNaN(nota) &&
+            notaStr.trim() !== "" &&
+            nota >= 0 &&
+            nota <= 10 &&
+            Number.isInteger(nota)
+        ) {
             return nota;
         }
-        console.log("insira apenas números válidos entre 0 e 10 para a nota.");
+        console.log("insira apenas números inteiros válidos entre 0 e 10 para a nota.");
     }
 }
 
@@ -45,7 +52,7 @@ function calcularMediaAlunos() {
     //mostra os resultados finais
     console.log("\nResultados finais:");
     alunos.forEach((aluno, idx) => {
-        console.log(`Saida ${idx + 1}: Aluno = ${aluno.nome} // Media = ${aluno.media.toFixed(2)}`);
+        console.log(`Saida ${idx + 1}: Aluno = ${aluno.nome} // Media = ${aluno.media.toFixed(1)}`);
     });
     
 }
